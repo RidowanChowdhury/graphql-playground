@@ -30,7 +30,7 @@ public class CustomerController {
         return customerService.findByCustomer(Integer.parseInt(id));
     }
 
-    @SchemaMapping(typeName = "Customer")
+    @SchemaMapping
     public Profile profile(Customer customer) {
         System.out.println(customer.id()); // n+1 problem
         return customerService.getProfile(customer);
