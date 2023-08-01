@@ -1,4 +1,4 @@
-package com.graphql.playground.datafetchers;
+package com.graphql.playground.services;
 
 import com.graphql.playground.model.Customer;
 import com.graphql.playground.model.Profile;
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CustomerDataFetcher {
+public class CustomerService {
 
     public List<Customer> customerList() {
         return List.of(new Customer(1, "Ryan"), new Customer(2, "Murphy"));
