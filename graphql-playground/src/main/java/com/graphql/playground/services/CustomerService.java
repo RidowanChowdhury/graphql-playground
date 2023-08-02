@@ -1,23 +1,24 @@
 package com.graphql.playground.services;
 
 import com.graphql.playground.model.Customer;
-import com.graphql.playground.model.Profile;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class CustomerService {
 
-    public List<Customer> customerList() {
-        return List.of(new Customer(1, "Ryan"), new Customer(2, "Murphy"));
-    }
+    private final Map<Integer, Customer> customerMap = new ConcurrentHashMap<Integer, Customer>();
 
     public Customer findByCustomer(int id) {
-        return new Customer(id, id == 1 ? "Ryan" : "Murphy");
+        return customerMap.get(id);
     }
 
-    public Profile getProfile(Customer customer) {
-        return new Profile(customer.id(), customer.id());
+
+    public Customer addCustomer(Customer customer) {
+        customerMap.put(customer.id(), customer);
+        return customer;
     }
+
 }
